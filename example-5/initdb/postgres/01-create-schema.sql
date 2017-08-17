@@ -1,0 +1,1 @@
+create table app_table (app_column text);

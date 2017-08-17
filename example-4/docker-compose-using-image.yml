@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  mysql_app:
+      build: ${PWD}
+      image: example/app
+      environment:
+        DB_HOST: mysql_db
+        DB_USER: app_user
+        DB_PASSWORD: app_password
+        DB_DRIVER: mysql
+      ports:
+        - "3001:3000"
+
+  mysql_db:
+      image: mysql:5
+      environment:
+        MYSQL_ROOT_PASSWORD: root_password
+        MYSQL_DATABASE: app_database
+        MYSQL_USER:  app_user
+        MYSQL_PASSWORD: app_password
+      ports:
+        - "3306:3306"
+      volumes:
+        - ${PWD}/initdb/mysql/:/docker-entrypoint-initdb.d
+
+  postgres_app:
+      build: ${PWD}
+      image: example/app
+      environment:
+        DB_HOST: postgres_db
+        DB_USER: app_user
+        DB_PASSWORD: app_password
+        DB_DRIVER: postgres
+      ports:
+        - "3002:3000"
+
+  postgres_db:
+      image: postgres:9
+      environment:
+        POSTGRES_DB: app_database
+        POSTGRES_USER:  app_user
+        POSTGRES_PASSWORD: app_password
+      ports:
+        - "5432:5432"
+      volumes:
+        - ${PWD}/initdb/postgres/:/docker-entrypoint-initdb.d
