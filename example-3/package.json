@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "any-db": "^2.2.0",
+    "any-db": "^2.2.1",
     "any-db-mysql": "^2.1.2",
     "any-db-postgres": "^2.1.5",
     "express": "^4.15.4"
